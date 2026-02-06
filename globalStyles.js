@@ -10,4 +10,9 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginTop: '5%',
+  },
 });

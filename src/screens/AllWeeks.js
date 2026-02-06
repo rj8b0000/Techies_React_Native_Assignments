@@ -48,11 +48,6 @@ const AllWeeks = () => {
 export default AllWeeks;
 
 const styles = StyleSheet.create({
-  heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginTop: '5%',
-  },
   listContainer: {
     width: '95%',
     borderColor: '#000',
