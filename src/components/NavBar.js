@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import Entypo from '@react-native-vector-icons/entypo';
+import { useNavigation } from '@react-navigation/native';
 
 const NavBar = ({ title }) => {
+  const navigation = useNavigation();
   return (
     <View
       style={{
@@ -18,6 +20,7 @@ const NavBar = ({ title }) => {
         size={24}
         color="black"
         style={{ marginRight: '3%' }}
+        onPress={() => navigation.goBack()}
       />
       <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'black' }}>
         {title}
