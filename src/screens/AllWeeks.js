@@ -18,7 +18,7 @@ const AllWeeks = () => {
   return (
     <SafeAreaView style={globalStyles.container}>
       <View style={globalStyles.mainContainer}>
-        <Text style={styles.heading}>AllWeeks</Text>
+        <Text style={globalStyles.heading}>AllWeeks</Text>
         <View style={styles.listContainer}>
           <FlatList
             data={Weeks}
