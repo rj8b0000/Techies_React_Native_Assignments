@@ -5,6 +5,7 @@ import AllWeeks from '../screens/AllWeeks';
 import Week1 from '../screens/Week1';
 import Week2 from '../screens/Week2';
 import Week3 from '../screens/Week3';
+import Week4 from '../screens/Week4';
 import DetailsScreen from '../screens/Week3/DetailsScreen';
 
 const Stack = createNativeStackNavigator();
@@ -30,6 +31,11 @@ const MainNavigator = () => {
       <Stack.Screen
         name="Week3"
         component={Week3}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Week4"
+        component={Week4}
         options={{ headerShown: false }}
       />
       <Stack.Screen
