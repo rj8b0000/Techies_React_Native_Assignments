@@ -17,12 +17,19 @@ const Week4 = () => {
   const [news, setNews] = useState([]);
   const [count, setCount] = useState(5);
   const [hasMore, setHasMore] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
-    fetchNews(count);
+    fetchNews(count, count != 5);
   }, [count]);
-  const fetchNews = async count => {
+  const fetchNews = async (count, isLoadMore = false) => {
     try {
+      if (isLoadMore) {
+        setLoadingMore(true);
+      } else {
+        setLoading(true);
+      }
+
       const response = await getNews(count);
       if (response.status == 200) {
         const newData = response?.data?.articles || [];
@@ -45,6 +52,7 @@ const Week4 = () => {
       }
     } finally {
       setLoading(false);
+      setLoadingMore(false);
     }
   };
   if (loading) {
@@ -52,14 +60,20 @@ const Week4 = () => {
   }
 
   const loadMore = () => {
-    if (!loading && hasMore) {
-      fetchNews(count + 1, true);
+    if (!loadingMore && hasMore) {
+      setLoadingMore(true);
       setCount(prev => prev + 5);
     }
   };
   const renderFooter = () => {
-    if (!loading) return null;
-    return <ActivityIndicator size={'large'} style={{ margin: 10 }} />;
+    if (!loadingMore) return null;
+    return (
+      <ActivityIndicator
+        size={'large'}
+        color={'#5e90d7'}
+        style={{ margin: 10 }}
+      />
+    );
   };
 
   return (
