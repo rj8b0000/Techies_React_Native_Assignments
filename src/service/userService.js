@@ -1,5 +1,6 @@
 import apiClient from '../api/apiClient';
 import { newsApiClient } from '../api/apiClient';
+import { NEWS_API_KEY } from '@env';
 
 const getCurrentDateFormatted = () => {
   const today = new Date();
@@ -19,8 +20,7 @@ export const getNews = page =>
       sortBy: 'popularity',
       from: currentDate,
       to: currentDate,
-      // apiKey: '4807c13eb37b4fefbb4f8b23bbfee32f',
-      apiKey: '156aa8dac5b44033b70f438bddea9005',
+      apiKey: NEWS_API_KEY,
       pageSize: page,
     },
   });
