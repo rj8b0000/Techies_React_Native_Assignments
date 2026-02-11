@@ -13,6 +13,7 @@ import { getNews } from '../service/userService';
 import NewsComponent from './Week4/NewsComponent';
 const Week4 = () => {
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState('');
   const [news, setNews] = useState([]);
   const [count, setCount] = useState(5);
@@ -21,8 +22,14 @@ const Week4 = () => {
   useEffect(() => {
     fetchNews(count);
   }, [count]);
-  const fetchNews = async count => {
+  const fetchNews = async (count, isLoadingMore = false) => {
     try {
+      if (isLoadingMore) {
+        setLoadingMore(true);
+      } else {
+        setLoading(true);
+      }
+
       const response = await getNews(count);
       if (response.status == 200) {
         const newData = response?.data?.articles || [];
@@ -53,6 +60,7 @@ const Week4 = () => {
 
   const loadMore = () => {
     if (!loading && hasMore) {
+      fetchNews(count + 1, true);
       setCount(prev => prev + 5);
     }
   };
@@ -65,6 +73,7 @@ const Week4 = () => {
     setCount(1);
     fetchNews(1);
   };
+
   return (
     <SafeAreaView
       style={[globalStyles.container, styles.safeArea]}
