@@ -13,7 +13,6 @@ import { getNews } from '../service/userService';
 import NewsComponent from './Week4/NewsComponent';
 const Week4 = () => {
   const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
   const [error, setError] = useState('');
   const [news, setNews] = useState([]);
   const [count, setCount] = useState(5);
@@ -22,14 +21,8 @@ const Week4 = () => {
   useEffect(() => {
     fetchNews(count);
   }, [count]);
-  const fetchNews = async (count, isLoadingMore = false) => {
+  const fetchNews = async count => {
     try {
-      if (isLoadingMore) {
-        setLoadingMore(true);
-      } else {
-        setLoading(true);
-      }
-
       const response = await getNews(count);
       if (response.status == 200) {
         const newData = response?.data?.articles || [];
@@ -66,12 +59,7 @@ const Week4 = () => {
   };
   const renderFooter = () => {
     if (!loading) return null;
-    return <ActivityIndicator style={{ margin: 10 }} />;
-  };
-  const handleRefresh = () => {
-    setHasMore(true);
-    setCount(1);
-    fetchNews(1);
+    return <ActivityIndicator size={'large'} style={{ margin: 10 }} />;
   };
 
   return (
@@ -91,7 +79,7 @@ const Week4 = () => {
           contentContainerStyle={{ flexGrow: 1 }}
           renderItem={({ item }) => <NewsComponent item={item} />}
           ItemSeparatorComponent={<View style={{ height: 10 }} />}
-          onRefresh={handleRefresh}
+          onRefresh={fetchNews}
           refreshing={loading}
           ListEmptyComponent={
             <Text style={styles.emptyText}>No data available</Text>
