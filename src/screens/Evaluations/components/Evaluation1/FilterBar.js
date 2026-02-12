@@ -65,11 +65,10 @@ const FilterBar = ({ isGrid, setIsGrid }) => {
           }}
         >
           {isGrid ? (
-            <List width={22} height={22} />
-          ) : (
             <Grid width={22} height={22} />
+          ) : (
+            <List width={22} height={22} />
           )}
-          {/* <List width={22} height={22} /> */}
         </TouchableOpacity>
         <View
           style={{

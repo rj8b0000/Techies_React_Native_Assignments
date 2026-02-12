@@ -16,9 +16,7 @@ const Evaluation1 = () => {
       <FilterBar isGrid={isGrid} setIsGrid={setIsGrid} />
       <View
         style={{
-          borderWidth: 1,
           width: '100%',
-          borderColor: 'green',
           paddingHorizontal: '4%',
         }}
       >
