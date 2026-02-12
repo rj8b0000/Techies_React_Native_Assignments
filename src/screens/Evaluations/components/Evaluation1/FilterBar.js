@@ -3,9 +3,11 @@ import React from 'react';
 import { FontFamily } from '../../../../theme/typography';
 import Down from '../../../../../assets/arrow.svg';
 import List from '../../../../../assets/listview.svg';
+import Grid from '../../../../../assets/grid.svg';
 import Filter from '../../../../../assets/filter.svg';
+import { TouchableOpacity } from 'react-native';
 
-const FilterBar = () => {
+const FilterBar = ({ isGrid, setIsGrid }) => {
   return (
     <View
       style={{
@@ -50,7 +52,7 @@ const FilterBar = () => {
           </Text>
           <Down width={8} height={8} />
         </View>
-        <View
+        <TouchableOpacity
           style={{
             justifyContent: 'center',
             alignItems: 'center',
@@ -58,9 +60,17 @@ const FilterBar = () => {
             padding: '5%',
             borderRadius: 50,
           }}
+          onPress={() => {
+            setIsGrid(prev => !prev);
+          }}
         >
-          <List width={22} height={22} />
-        </View>
+          {isGrid ? (
+            <List width={22} height={22} />
+          ) : (
+            <Grid width={22} height={22} />
+          )}
+          {/* <List width={22} height={22} /> */}
+        </TouchableOpacity>
         <View
           style={{
             justifyContent: 'center',

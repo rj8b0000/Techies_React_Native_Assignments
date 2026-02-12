@@ -8,31 +8,33 @@ import ProductComponent from './components/Evaluation1/ProductComponent';
 import { openFashionProducts } from '../../data/openFashionProducts';
 
 const Evaluation1 = () => {
-  const [isGrid, setIsGrid] = useState(false);
+  const [isGrid, setIsGrid] = useState(true);
   return (
     <SafeAreaView style={globalStyles.container}>
       <EvaluationHeader />
       <View style={{ height: '2%' }} />
-      <FilterBar />
+      <FilterBar isGrid={isGrid} setIsGrid={setIsGrid} />
       <View
         style={{
-          // borderWidth: 1,
+          borderWidth: 1,
           width: '100%',
           borderColor: 'green',
           paddingHorizontal: '4%',
-          // marginBottom: '15%',
         }}
       >
         <View style={{ height: '1%' }} />
 
         <FlatList
+          key={isGrid ? 'grid' : 'list'}
           data={openFashionProducts}
           renderItem={({ item }) => (
             <ProductComponent item={item} isGrid={isGrid} />
           )}
           keyExtractor={item => item.id}
-          numColumns={2}
-          columnWrapperStyle={{ justifyContent: 'space-between' }}
+          numColumns={isGrid ? 2 : 1}
+          columnWrapperStyle={
+            isGrid ? { justifyContent: 'space-between' } : undefined
+          }
           showsVerticalScrollIndicator={false}
           ListFooterComponent={<View style={{ height: 120 }} />}
         />
