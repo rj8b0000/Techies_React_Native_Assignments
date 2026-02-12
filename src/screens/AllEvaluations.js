@@ -6,23 +6,21 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import Week1 from './Week1';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { globalStyles } from '../../globalStyles';
 import { useNavigation } from '@react-navigation/native';
-import Weeks from '../data/Weeks';
 import { Evaluation } from '../data/Evaluation';
 
-const AllWeeks = () => {
+const AllEvaluations = () => {
   const navigation = useNavigation();
 
   return (
     <SafeAreaView style={globalStyles.container}>
       <View style={globalStyles.mainContainer}>
-        <Text style={globalStyles.heading}>AllWeeks</Text>
+        <Text style={globalStyles.heading}>AllEvaluations</Text>
         <View style={styles.listContainer}>
           <FlatList
-            data={Weeks}
+            data={Evaluation}
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() => navigation.navigate(item.name)}
@@ -46,7 +44,7 @@ const AllWeeks = () => {
   );
 };
 
-export default AllWeeks;
+export default AllEvaluations;
 
 const styles = StyleSheet.create({
   listContainer: {
