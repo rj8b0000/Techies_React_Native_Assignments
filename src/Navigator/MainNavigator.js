@@ -12,13 +12,14 @@ import Week5 from '../screens/Week5';
 import DetailsScreen from '../screens/Week3/DetailsScreen';
 import HomeScreen from '../screens/HomeScreen';
 import Evaluation1 from '../screens/Evaluations/Evaluation1';
-import { counterStore } from '../redux/counterStore';
+// import { counterStore } from '../redux/counterStore';
+import { todoStore } from '../redux/todoStore';
 
 const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
   return (
-    <Provider store={counterStore}>
+    <Provider store={todoStore}>
       <Stack.Navigator>
         <Stack.Screen
           name="HomeScreen"
