@@ -3,7 +3,6 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AllWeeks from '../screens/AllWeeks';
 import AllEvaluations from '../screens/AllEvaluations';
-import { Provider } from 'react-redux';
 import Week1 from '../screens/Week1';
 import Week2 from '../screens/Week2';
 import Week3 from '../screens/Week3';
@@ -12,9 +11,8 @@ import Week5 from '../screens/Week5';
 import DetailsScreen from '../screens/Week3/DetailsScreen';
 import HomeScreen from '../screens/HomeScreen';
 import Evaluation1 from '../screens/Evaluations/Evaluation1';
-// import { counterStore } from '../redux/counterStore';
+import { Provider } from 'react-redux';
 import { todoStore } from '../redux/todoStore';
-
 const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
