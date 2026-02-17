@@ -1,5 +1,5 @@
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { globalStyles } from '../../globalStyles';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +7,8 @@ import { addTaskToList, toggleTask, removeTask } from '../redux/todoSlice';
 import { FlatList, TextInput } from 'react-native-gesture-handler';
 import AntDesign from '@react-native-vector-icons/ant-design';
 import Modal from 'react-native-modal';
+import RadioGroup from 'react-native-radio-buttons-group';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Week5 = () => {
   const tasks = useSelector(state => state.todo.tasks);
@@ -15,7 +17,28 @@ const Week5 = () => {
   const [text, setText] = useState('');
   const [id, setId] = useState(0);
   const [isModalVisible, setModalVisible] = useState(false);
-
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+  const [filter, setFilter] = useState('0');
+  const radioButtons = useMemo(
+    () => [
+      {
+        id: '0',
+        completed: 'all',
+        label: 'All Tasks',
+      },
+      {
+        id: '1',
+        label: 'Done',
+        completed: true,
+      },
+      {
+        id: '2',
+        label: 'Un Done',
+        completed: false,
+      },
+    ],
+    [],
+  );
   useEffect(() => {
     console.log('New task: ', tasks);
   }, [tasks]);
@@ -33,37 +56,65 @@ const Week5 = () => {
     showAddTask(false);
     setText('');
   };
-  return (
-    <SafeAreaView style={globalStyles.container}>
-      <View style={styles.localContainer}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Text style={globalStyles.headerTitle}>Todo App</Text>
-          <TouchableOpacity onPress={toggleModal}>
-            <AntDesign name="more" size={24} color="#000" />
-          </TouchableOpacity>
-        </View>
-        <Modal
-          isVisible={isModalVisible}
-          onBackdropPress={setModalVisible(false)}
-        >
-          <View
-            style={{
-              height: '30%',
-              // justifyContent: 'center',
-              // alignItems: 'center',
-              backgroundColor: '#fff',
-              borderRadius: 10,
-              padding: '4%',
-            }}
-          >
-            <Text style={globalStyles.headerTitle}>Filter Tasks</Text>
+  const onSelectTask = id => {
+    setFilter(id);
+    toggleModal();
+  };
+  const selectedTasks = useMemo(() => {
+    return radioButtons.find(rb => rb.id === filter)?.completed;
+  }, [filter]);
 
-            <Button title="Hide modal" onPress={toggleModal} />
+  const filteredTasks = useMemo(() => {
+    if (selectedTasks === 'all') {
+      return tasks;
+    }
+    return tasks.filter(tasks => tasks.completed === selectedTasks);
+  }, [tasks, selectedTasks]);
+  return (
+    <SafeAreaView
+      style={[
+        globalStyles.container,
+        { backgroundColor: isDarkMode ? '#333' : '#fff' },
+      ]}
+    >
+      <View style={styles.localContainer}>
+        <View style={styles.headerRow}>
+          <Text
+            style={[
+              globalStyles.headerTitle,
+              { color: isDarkMode ? '#fff' : '#000' },
+            ]}
+          >
+            Todo App
+          </Text>
+          <View style={styles.iconContainer}>
+            <TouchableOpacity onPress={toggleTheme}>
+              <AntDesign
+                name={isDarkMode ? 'sun' : 'moon'}
+                size={24}
+                color={isDarkMode ? '#f4a244' : '#000'}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={toggleModal}>
+              <AntDesign
+                name="more"
+                size={24}
+                color={isDarkMode ? '#fff' : '#000'}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <Modal isVisible={isModalVisible} onBackdropPress={toggleModal}>
+          <View style={styles.modalContent}>
+            <Text style={globalStyles.headerTitle}>Filter Tasks</Text>
+            <View style={styles.filterContainer}>
+              <RadioGroup
+                containerStyle={styles.radioGroupContainer}
+                radioButtons={radioButtons}
+                onPress={onSelectTask}
+                selectedId={filter}
+              />
+            </View>
           </View>
         </Modal>
         <TouchableOpacity
@@ -75,7 +126,13 @@ const Week5 = () => {
         {addTask ? (
           <View style={styles.inputContainer}>
             <TextInput
-              style={styles.input}
+              style={[
+                styles.input,
+                {
+                  borderColor: isDarkMode ? '#fff' : '#000',
+                  color: isDarkMode ? '#fff' : '#000',
+                },
+              ]}
               value={text}
               onChangeText={setText}
               placeholder="Enter the Task"
@@ -93,7 +150,7 @@ const Week5 = () => {
         ) : null}
         {tasks.length > 0 ? (
           <FlatList
-            data={tasks}
+            data={filteredTasks}
             keyExtractor={item => item.id}
             renderItem={(item, index) => {
               return (
@@ -105,6 +162,11 @@ const Week5 = () => {
                         textDecorationLine: item.item.completed
                           ? 'line-through'
                           : 'none',
+                      },
+                      {
+                        color: isDarkMode ? '#fff' : '#000',
+                        borderWidth: 1,
+                        borderColor: isDarkMode ? '#fff' : '#000',
                       },
                     ]}
                   >
@@ -146,6 +208,32 @@ export default Week5;
 const styles = StyleSheet.create({
   localContainer: {
     padding: '4%',
+  },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  iconContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 10,
+  },
+  modalContent: {
+    height: '23%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: '4%',
+  },
+  filterContainer: {
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    width: '100%',
+    marginTop: 10,
+  },
+  radioGroupContainer: {
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
   },
   addTaskButton: {
     padding: '4%',
@@ -194,7 +282,6 @@ const styles = StyleSheet.create({
   },
   taskText: {
     fontSize: 18,
-    borderWidth: 1,
     borderRadius: 10,
     padding: '2%',
     width: '58%',
