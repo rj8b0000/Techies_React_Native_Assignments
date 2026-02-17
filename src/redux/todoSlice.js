@@ -10,12 +10,10 @@ const todoSlice = createSlice({
       state.tasks.push(action.payload);
     },
     toggleTask: (state, action) => {
-      state.tasks = state.tasks.map(task => {
-        if (task.id === action.payload.id) {
-          task.completed = !task.completed;
-        }
-        return task;
-      });
+      const task = state.tasks.find(t => t.id === action.payload);
+      if (task) {
+        task.completed = !task.completed;
+      }
     },
     removeTask: (state, action) => {
       state.tasks = state.tasks.filter(task => task.id !== action.payload.id);

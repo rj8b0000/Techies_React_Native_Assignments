@@ -181,7 +181,7 @@ const Week5 = () => {
                           : '#30336b',
                       },
                     ]}
-                    onPress={() => dispatch(toggleTask(item.item))}
+                    onPress={() => dispatch(toggleTask(item.item.id))}
                   >
                     <Text style={styles.actionButtonText}>
                       {item.item.completed ? 'Mark Undone' : 'Mark done'}
