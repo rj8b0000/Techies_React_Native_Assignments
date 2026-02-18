@@ -1,5 +1,6 @@
 import apiClient from '../api/apiClient';
 import { newsApiClient } from '../api/apiClient';
+import { productApiClient } from '../api/apiClient';
 import { NEWS_API_KEY } from '@env';
 
 const getCurrentDateFormatted = () => {
@@ -22,5 +23,12 @@ export const getNews = page =>
       to: currentDate,
       apiKey: NEWS_API_KEY,
       pageSize: page,
+    },
+  });
+export const getProducts = count =>
+  productApiClient.get('/api/v1/products', {
+    params: {
+      limit: count,
+      offset: 0,
     },
   });

@@ -8,9 +8,12 @@ import Week2 from '../screens/Week2';
 import Week3 from '../screens/Week3';
 import Week4 from '../screens/Week4';
 import Week5 from '../screens/Week5';
+import Week6 from '../screens/Week6';
 import DetailsScreen from '../screens/Week3/DetailsScreen';
 import HomeScreen from '../screens/HomeScreen';
 import Evaluation1 from '../screens/Evaluations/Evaluation1';
+import FlatListScreen from '../screens/Week6/FlatListScreen';
+import SectionListScreen from '../screens/Week6/SectionListScreen';
 import { Provider } from 'react-redux';
 import { todoStore } from '../redux/todoStore';
 import { ThemeProvider } from '../context/ThemeContext';
@@ -64,6 +67,21 @@ const MainNavigator = () => {
           <Stack.Screen
             name="Week5"
             component={Week5}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Week6"
+            component={Week6}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="FlatListScreen"
+            component={FlatListScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SectionListScreen"
+            component={SectionListScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen

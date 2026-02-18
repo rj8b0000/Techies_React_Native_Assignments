@@ -15,3 +15,11 @@ export const newsApiClient = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+export const productApiClient = axios.create({
+  baseURL: `https://api.escuelajs.co`,
+  timeout: 5000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
