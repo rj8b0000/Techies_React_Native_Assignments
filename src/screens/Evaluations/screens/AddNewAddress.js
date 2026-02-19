@@ -61,23 +61,10 @@ const AddNewAddress = () => {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.wrapper}
           >
-            {/* <View style={styles.wrapper}> */}
             <HeaderComponent title={'ADD SHIPPING ADDRESS'} />
-            <View
-              style={{
-                height: '80%',
-                justifyContent: 'space-between',
-                marginTop: '5%',
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  width: '100%',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <View style={{ width: '48.5%' }}>
+            <View style={styles.formContainer}>
+              <View style={styles.rowBetween}>
+                <View style={styles.halfWidth}>
                   <CustomTextInput
                     placeHolder={'First Name'}
                     state={firstName}
@@ -85,7 +72,7 @@ const AddNewAddress = () => {
                     keyboardType={'default'}
                   />
                 </View>
-                <View style={{ width: '48.5%' }}>
+                <View style={styles.halfWidth}>
                   <CustomTextInput
                     placeHolder={'Last Name'}
                     state={lastName}
@@ -94,11 +81,7 @@ const AddNewAddress = () => {
                   />
                 </View>
               </View>
-              <View
-                style={{
-                  width: '100%',
-                }}
-              >
+              <View style={styles.fullWidth}>
                 <CustomTextInput
                   placeHolder={'Address'}
                   state={address}
@@ -106,11 +89,7 @@ const AddNewAddress = () => {
                   keyboardType={'default'}
                 />
               </View>
-              <View
-                style={{
-                  width: '100%',
-                }}
-              >
+              <View style={styles.fullWidth}>
                 <CustomTextInput
                   placeHolder={'City'}
                   state={city}
@@ -118,21 +97,15 @@ const AddNewAddress = () => {
                   keyboardType={'default'}
                 />
               </View>
-              <View
-                style={{
-                  flexDirection: 'row',
-                  width: '100%',
-                  justifyContent: 'space-between',
-                }}
-              >
-                <View style={{ width: '48.5%' }}>
+              <View style={styles.rowBetween}>
+                <View style={styles.halfWidth}>
                   <CustomTextInput
                     placeHolder={'State'}
                     state={state}
                     setState={setState}
                   />
                 </View>
-                <View style={{ width: '48.5%' }}>
+                <View style={styles.halfWidth}>
                   <CustomTextInput
                     placeHolder={'ZIP Code'}
                     state={zipCode}
@@ -141,11 +114,7 @@ const AddNewAddress = () => {
                   />
                 </View>
               </View>
-              <View
-                style={{
-                  width: '100%',
-                }}
-              >
+              <View style={styles.fullWidth}>
                 <CustomTextInput
                   placeHolder={'Phone Number'}
                   state={phoneNumber}
@@ -158,7 +127,7 @@ const AddNewAddress = () => {
           {/* <View style={{ height: 140 }} /> */}
         </ScrollView>
         <BottomButton title={'ADD NOW'} onPress={saveAddress} />
-        <SafeAreaView edges={['bottom']} style={{ backgroundColor: 'black' }} />
+        <SafeAreaView edges={['bottom']} style={styles.bottomSafe} />
       </SafeAreaView>
     </>
   );
@@ -169,4 +138,17 @@ export default AddNewAddress;
 const styles = StyleSheet.create({
   spacerSmall: { height: '2%' },
   wrapper: { width: '100%', paddingHorizontal: '4%' },
+  formContainer: {
+    height: '80%',
+    justifyContent: 'space-between',
+    marginTop: '5%',
+  },
+  rowBetween: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+  },
+  halfWidth: { width: '48.5%' },
+  fullWidth: { width: '100%' },
+  bottomSafe: { backgroundColor: 'black' },
 });
