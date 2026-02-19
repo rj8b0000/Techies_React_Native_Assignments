@@ -12,6 +12,8 @@ import Week6 from '../screens/Week6';
 import DetailsScreen from '../screens/Week3/DetailsScreen';
 import HomeScreen from '../screens/HomeScreen';
 import Evaluation1 from '../screens/Evaluations/Evaluation1';
+import Evaluation2 from '../screens/Evaluations/Evaluation2';
+import AddNewAddress from '../screens/Evaluations/screens/AddNewAddress';
 import FlatListScreen from '../screens/Week6/FlatListScreen';
 import SectionListScreen from '../screens/Week6/SectionListScreen';
 import { Provider } from 'react-redux';
@@ -40,8 +42,18 @@ const MainNavigator = () => {
             options={{ headerShown: false }}
           />
           <Stack.Screen
+            name="AddNewAddress"
+            component={AddNewAddress}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
             name="Evaluation1"
             component={Evaluation1}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Evaluation2"
+            component={Evaluation2}
             options={{ headerShown: false }}
           />
           <Stack.Screen
