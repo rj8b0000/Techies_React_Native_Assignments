@@ -19,6 +19,7 @@ import SectionListScreen from '../screens/Week6/SectionListScreen';
 import { Provider } from 'react-redux';
 import { todoStore } from '../redux/todoStore';
 import { ThemeProvider } from '../context/ThemeContext';
+import Week7 from '../screens/Week7';
 const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
@@ -84,6 +85,11 @@ const MainNavigator = () => {
           <Stack.Screen
             name="Week6"
             component={Week6}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Week7"
+            component={Week7}
             options={{ headerShown: false }}
           />
           <Stack.Screen
