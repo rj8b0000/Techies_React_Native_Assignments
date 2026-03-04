@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "579321829048",
+    "project_id": "auth-app-week8",
+    "storage_bucket": "auth-app-week8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579321829048:android:76714b1af06d021a6c464d",
+        "android_client_info": {
+          "package_name": "com.practiceproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmZIvaADAXF6v3bQxw4Q2yDiTl3-pWj44"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

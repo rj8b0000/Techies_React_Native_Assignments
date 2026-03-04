@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@d11/react-native-fast-image": "^8.13.0",
+    "@react-native-firebase/app": "^23.8.6",
+    "@react-native-firebase/auth": "^23.8.6",
     "@react-native-vector-icons/ant-design": "^12.4.0",
     "@react-native-vector-icons/entypo": "^12.4.0",
     "@react-native-vector-icons/feather": "^12.4.0",
