@@ -21,6 +21,7 @@ import { todoStore } from '../redux/todoStore';
 import { ThemeProvider } from '../context/ThemeContext';
 import Week7 from '../screens/Week7';
 import Week8 from '../screens/Week8';
+import Week9 from '../screens/Week9';
 const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
@@ -96,6 +97,11 @@ const MainNavigator = () => {
           <Stack.Screen
             name="Week8"
             component={Week8}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Week9"
+            component={Week9}
             options={{ headerShown: false }}
           />
           <Stack.Screen
