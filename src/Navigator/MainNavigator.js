@@ -13,6 +13,7 @@ import DetailsScreen from '../screens/Week3/DetailsScreen';
 import HomeScreen from '../screens/HomeScreen';
 import Evaluation1 from '../screens/Evaluations/Evaluation1';
 import Evaluation2 from '../screens/Evaluations/Evaluation2';
+import Evaluation3 from '../screens/Evaluations/Evaluation3';
 import AddNewAddress from '../screens/Evaluations/screens/AddNewAddress';
 import FlatListScreen from '../screens/Week6/FlatListScreen';
 import SectionListScreen from '../screens/Week6/SectionListScreen';
@@ -57,6 +58,11 @@ const MainNavigator = () => {
           <Stack.Screen
             name="Evaluation2"
             component={Evaluation2}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Evaluation3"
+            component={Evaluation3}
             options={{ headerShown: false }}
           />
           <Stack.Screen
